@@ -1,2 +1,2 @@
-#AVSeleniumAutomation
+#SeleniumAutomation
 add a change
