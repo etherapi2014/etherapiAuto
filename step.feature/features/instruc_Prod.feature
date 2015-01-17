@@ -29,19 +29,19 @@ Feature: regression test
     |p.etherapi00+1@gmail.com |Test Rita Zero One|
     |p.etherapi00+2@gmail.com |Test Rita ZeroTwo|
     |p.etherapi00+3@gmail.com |Test ZeroThree|
-    |p.etherapi00+4@gmail.com |Test ZeroFour|
-    |p.etherapi00+5@gmail.com |Test ZeroFive|
-    |p.etherapi00+6@gmail.com |Test ZeroSix|
-    |p.etherapi00+7@gmail.com |Test ZeroSeven|
-    |p.etherapi00+8@gmail.com |ZeroEight p.etherapi00+8@gmail.com|
-    |p.etherapi00+9@gmail.com |Test ZeroNine|
-    |p.etherapi00+10@gmail.com|Test ZeroTen|
+    #|p.etherapi00+4@gmail.com |Test ZeroFour|
+    #|p.etherapi00+5@gmail.com |Test ZeroFive|
+    #|p.etherapi00+6@gmail.com |Test ZeroSix|
+    #|p.etherapi00+7@gmail.com |Test ZeroSeven|
+    #|p.etherapi00+8@gmail.com |ZeroEight p.etherapi00+8@gmail.com|
+    #|p.etherapi00+9@gmail.com |Test ZeroNine|
+    #|p.etherapi00+10@gmail.com|Test ZeroTen|
     #|p.etherapi00+11@gmail.com|Test Croce|
     #|p.etherapi00+12@gmail.com|Test Croce|
     #|p.etherapi00+13@gmail.com|Test ZeroThirteen|
     #|p.etherapi00+14@gmail.com|Test ZeroFourteen|
     #|p.etherapi00+15@gmail.com|Test ZeroFifteen|
-    #|p.etherapi00+16@gmail.com|Test ZeroSixteen|
+    |p.etherapi00+16@gmail.com|Test ZeroSixteen|
     #|p.etherapi00+17@gmail.com|Test ZeroSeventeen|
     #|p.etherapi00+18@gmail.com|Test ZeroEighteen|
     #|p.etherapi00+19@gmail.com|Test ZeroNineteen|
