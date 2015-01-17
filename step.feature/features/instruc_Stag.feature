@@ -124,8 +124,3 @@ Feature: regression test
   Examples:
   |account                 |verifyMsg |nameForSearch|nameForVerify                 |
   |p.etherapi00+3@gmail.com|Amanda Lau|Terry        |Terry t.etherapi00+5@gmail.com|
-
-
-  #Scenario: Verify clicking eTherapi logo will load to home page
-  #  Given Click the eTherapi logo
-  #  Then verify the homepage is loaded
