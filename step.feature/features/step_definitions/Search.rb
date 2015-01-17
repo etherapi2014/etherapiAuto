@@ -1,55 +1,5 @@
 driver=$driverfx
-def rendering_page_until check_key
-  driver=$driverfx
-  results_counts=0
-  results_change=1
-  results_text=nil
-  index_loading_number=0
-  page_count=0
-  max_search_results=1000
-  if check_key.instance_of? String
-    until results_change==0 or results_counts >= max_search_results
-      element=myfindElement(:css,"div.row div.col-md-4")
-      element.location_once_scrolled_into_view
-      page_count=page_count+1
-      sleep 2
-      result_eles=myfindElements(:css,"h3.medium-title a")
-      results_flash=result_eles.size
-      break unless (index_loading_number..(results_flash-1)).each do |ele|
-        results_text=result_eles[ele].text
-        break if isContainStr(check_key,results_text)
-      end
-      index_loading_number=results_flash
-      if results_flash>=results_counts
-        results_change=results_flash-results_counts
-        results_counts=results_flash
-      end
-    end
-    if isContainStr(check_key,results_text)
-      puts "found the #{check_key} at #{page_count.to_s} page"
-      return true
-    else
-      return false
-    end
-  end
-  if check_key.instance_of? Fixnum
-    until results_change==0 or results_counts>=check_key
-      element=driver.find_element(:css,"div.row div.col-md-4")
-      element.location_once_scrolled_into_view
-      sleep 2
-      results_flash=myfindElements(:css,"h3.medium-title").size
-      if results_flash>=results_counts
-        results_change=results_flash-results_counts
-        results_counts=results_flash
-      end
-    end
-    if results_counts>=check_key
-      true
-    else
-      false
-    end
-  end
-end
+
 Given /^Click on the Find a Therapist button on homepage$/ do
   element=myfindElement(:id,"goto-search-btn")
   ensure_click(element)

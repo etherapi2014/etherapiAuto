@@ -1,27 +1,4 @@
 
-def findDayinCalendar findDay,findMonth
-  visibledate=myfindElement(:css,"span.fc-header-title h2").text
-  visibleMon=visibledate[0..2]
-  visibleDay=visibledate.scan /\s\d{1,2}\s/
-  while findDay.to_i>visibleDay[1].to_i or not findMonth.eql?(visibleMon)
-    nextClick=myfindElement(:css,"span.fc-button.fc-button-next.fc-state-default.fc-corner-right")
-    nextClick.click
-    visibledate=myfindElement(:css,"span.fc-header-title h2").text
-    visibleDay=visibledate.scan /\s\d{1,2}\s/
-    visibleMon=visibledate[0..2]
-  end
-end
-def findVertHour hours
-  hour=hours.match(/\d{1,2}/)
-  if hours.match(/\w{2}$/)[0].eql?('pm')
-    hour24=hour[0].to_i+12
-  end
-  hourEleLocal=hour24*4
-  hourtoClick=myfindElement(:css,"tr[class*=fc-slot#{hourEleLocal.to_s}] td")
-  hourtoClick.location_once_scrolled_into_view
-  sleep 3
-  hourtoClick
-end
 Then /^Click on the Provider Name field, type in (.*)$/ do |nameSearch|
   nameSearchEle=myfindElement(:id,"name-txt")
   nameSearchEle.send_keys nameSearch

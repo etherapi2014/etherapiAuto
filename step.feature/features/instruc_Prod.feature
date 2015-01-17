@@ -89,6 +89,7 @@ Feature: regression test
     |forbes            |Forbes                                 |
     |health2.0         |eTherapi – Launch!                     |
     |treatment-magazine|Virtual Behavioral Healthcare Platforms|
+    |business-times    |Dignity pulls back curtain on new deals|
     |psychology-today  |Is It Therapy or Is It a Video Game?   |
   @Body
   Scenario Outline: Verify BODY up carousel elements TC10-TC17
@@ -113,7 +114,7 @@ Feature: regression test
    |2|
    |3|
    |4|
-  @Body
+  @Body @need_modification
   Scenario Outline: Verify Body lower carousel moves as clicking arrow
     Given Click on the arrow <Number> times on lower carousel
     Then Verify the <Text> on lower carousel
@@ -161,6 +162,3 @@ Feature: regression test
   Examples:
   |account                 |verifyMsg |nameForSearch|nameForVerify             |
   |p.etherapi00+16@gmail.com|Test ZeroSixteen|Edoardo|Edoardo Croce|
-  #Scenario: Verify clicking eTherapi logo will load to home page
-  #  Given Click the eTherapi logo
-  #  Then verify the homepage is loaded

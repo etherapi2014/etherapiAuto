@@ -1,65 +1,6 @@
 
 driver=$driverfx
-def myfindElements (*args)
-  driver=$driverfx
-  $wait20.until{driver.find_elements(*args).size>0}
-  driver.find_elements(*args)
-end
-def ensure_click element
-  driver=$driverfx
-  pageChange=false
-  clickMax=5
-  clicktime=0
-  until pageChange
-    urlbeforeClick=driver.current_url
-    element.click
-    urlafterClick=driver.current_url
-    if urlafterClick!=urlbeforeClick
-      pageChange=true
-    end
-    clicktime=clicktime+1
-    if clicktime>=clickMax
-      puts "Not sure it is directed"
-      break
-    end
-  end
-end
-def ensure_click_new_page element
-  driver=$driverfx
-  pageChange=false
-  clickMax=5
-  clicktime=0
-  until pageChange
-    urlbeforeClick=driver.current_url
-    element.click
-    windowlist=driver.window_handles
-    if (windowlist.size>0)
-      driver.switch_to.window(windowlist.last)
-      urlafterClick=driver.current_url
-      if urlafterClick!=urlbeforeClick
-        pageChange=true
-      end
-      clicktime=clicktime+1
-      return false if clicktime>=clickMax
-    else
-      false
-    end
 
-  end
-end
-def verifyMsgInPage msgstr
-  eleToVerify=myfindElements(:xpath,"//*[contains(text(),\"#{msgstr}\") or contains(@*,\"#{msgstr}\")]")
-  if eleToVerify.size>0
-    true
-  else
-    false
-  end
-end
-def isContainStr(str,sentence)
-  if !!(sentence =~ Regexp.new(str, true)) or str.gsub(/\s+/, "").eql?(sentence.gsub(/\s+/, ""))
-    true
-  end
-end
 Given /^Clicking (.*) on body$/ do |link|
   element=myfindElement(:xpath,"//img[contains(@src,'#{link}')]")
   ensure_click_new_page(element)

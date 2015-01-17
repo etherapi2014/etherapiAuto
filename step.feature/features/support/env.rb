@@ -4,6 +4,9 @@ require 'cucumber'
 #require 'rspec/expectations'
 #require  'minitest/assertions'
 
+time=Time.new()
+$outfile_name=time.day.to_s+time.hour.to_s+time.min.to_s
+$outio = File.open("out"+time.day.to_s+".txt", "a")
 $driverfx = Selenium::WebDriver.for :firefox
 #$driverch = Selenium::WebDriver.for :chrome
 $driverfx.manage.timeouts.implicit_wait = 0
