@@ -2,7 +2,6 @@
 driver=$driverfx
 def myfindElements (*args)
   driver=$driverfx
-  #sleep 3
   $wait20.until{driver.find_elements(*args).size>0}
   driver.find_elements(*args)
 end

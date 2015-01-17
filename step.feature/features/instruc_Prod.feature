@@ -156,11 +156,11 @@ Feature: regression test
     Then Click on search results with <nameForVerify>
     Then Click on Request Appointment
     Then Requesting session on 28-Feb-2015, 8pm
-    Then Finish the Payment request with Visa, Anthem Blue Cross
+    Then Finish the Payment request with American, Anthem Blue Cross
     Then Verify the request is pending at 02/28/2015, 8:00 PM
   Examples:
   |account                 |verifyMsg |nameForSearch|nameForVerify             |
-  |p.etherapi00+16@gmail.com|Test ZeroSixteen|Sharon Young|Dr Sharon Young TEST|
+  |p.etherapi00+16@gmail.com|Test ZeroSixteen|Edoardo|Edoardo Croce|
   #Scenario: Verify clicking eTherapi logo will load to home page
   #  Given Click the eTherapi logo
   #  Then verify the homepage is loaded

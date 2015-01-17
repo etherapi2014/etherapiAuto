@@ -123,4 +123,4 @@ Feature: regression test
   Examples:
   |account                 |verifyMsg |nameForSearch|nameForVerify                 |
   |p.etherapi00+3@gmail.com|Amanda Lau|Terry        |Terry t.etherapi00+5@gmail.com|
-  
+
