@@ -1,7 +1,5 @@
 ﻿#for x in {1..1}; do cucumber --tags @Header; done
-#testing from flo
 Feature: regression test
-
   @Header
   Scenario: Verify header menu fixed on top as user scrolling down
     Given verify header is shown
@@ -63,7 +61,7 @@ Feature: regression test
    | CONTACT YOUR THERAPIST |
    | LOTS OF CHOICE         |
    | EASY SCHEDULING |
-  @Body
+  @Body @need_improvement
   Scenario Outline: Verify BODY up carousel Find a Therapist button TC10-TC17
    Given Click on the arrow <Number> times on up carousel
    Then Click on the Find a Therapist button <Number>
@@ -109,6 +107,7 @@ Feature: regression test
     |Find a therapist | Need to talk? |
     |For Therapists   |Build your online therapy practice.|
     |Sign up   |Have an account?|
+  @need_improvement
   Scenario Outline: client book a session
     Given Verify clicking Login on header menu will load to Log In
     Given Entering <account> can login successfully
@@ -124,3 +123,4 @@ Feature: regression test
   Examples:
   |account                 |verifyMsg |nameForSearch|nameForVerify                 |
   |p.etherapi00+3@gmail.com|Amanda Lau|Terry        |Terry t.etherapi00+5@gmail.com|
+  
