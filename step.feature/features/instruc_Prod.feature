@@ -86,7 +86,7 @@ Feature: Prod regression test
     Then Close new windows
     Examples:
     |link              |page_verify                            |
-    |psychology-today  |Is It Therapy or Is It a Video Game?   |
+   # |psychology-today  |Is It Therapy or Is It a Video Game?   |
     |forbes            |Forbes                                 |
     |health2.0         |eTherapi – Launch!                     |
     |treatment-magazine|Virtual Behavioral Healthcare Platforms|
