@@ -86,11 +86,11 @@ Feature: Prod regression test
     Then Close new windows
     Examples:
     |link              |page_verify                            |
+    |psychology-today  |Is It Therapy or Is It a Video Game?   |
     |forbes            |Forbes                                 |
     |health2.0         |eTherapi – Launch!                     |
     |treatment-magazine|Virtual Behavioral Healthcare Platforms|
     |business-times    |Dignity pulls back curtain on new deals|
-    #|psychology-today  |Is It Therapy or Is It a Video Game?   |
   @Body
   Scenario Outline: Verify BODY up carousel elements TC10-TC17
    Then Verify the <text> on up carousel by clicking the arrow
@@ -160,6 +160,6 @@ Feature: Prod regression test
     Then Finish the Payment request with American, Anthem Blue Cross
     Then Verify the request is pending at 02/28/2015, 8:00 PM
   Examples:
-  |account                 |verifyMsg |nameForSearch|nameForVerify             |
-  #|p.etherapi00+16@gmail.com|Test ZeroSixteen|Edoardo|Edoardo Croce| this will annoy Edo
+  |account                 |verifyMsg |nameForSearch|nameForVerify |
+  #|p.etherapi00+16@gmail.com|Test ZeroSixteen|Edoardo|Edoardo Croce| #this will annoy Edo
   #|p.etherapi00+16@gmail.com|Test ZeroSixteen|eTherapi|Edoardo Croce|

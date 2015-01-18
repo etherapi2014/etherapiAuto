@@ -1,3 +1,4 @@
+require 'timeout'
 ## simple assert to veriy test is successfull or not, if not, msg will print
 def assert test, msg = nil
   msg ||= "Failed assertion, no message given."
@@ -8,15 +9,18 @@ def assert test, msg = nil
   true
 end
 ## until element is found, driver will wait max 20 secs. As soon as it's found , waiting will stop.
-
 def findElementArray *args
   driver=$driverfx
   driver.find_elements(*args)
 end
-def waitToFindElement (*args)
+
+def findElementOne *args
   driver=$driverfx
+  driver.find_element(*args)
+end
+def waitToFindElement (*args)
   $wait20.until{
-    element=driver.find_element(*args)
+    element=findElementOne(*args)
     element if element.displayed?
   }
 end
@@ -27,12 +31,11 @@ def clickMyElement(*args)
 end
 # keep wait 1 sec until element number in the page is not increased anymore.
 def waitUntilEleStable maxwait=1
-  driver=$driverfx
   eleloading=1
   precount=0
   count=0
   until eleloading==0 or count >= maxwait
-    elecount=driver.find_elements(:xpath,"//*").size
+    elecount=findElementArray(:xpath,"//*").size
     eleloading=elecount-precount
     precount=elecount
     sleep 1
@@ -43,7 +46,6 @@ end
 # check key can be number of search results, or specific string
 # welcome to modify this part
 def rendering_page_until check_key
-  driver=$driverfx
   results_counts=0
   results_change=1
   results_text=nil
@@ -77,7 +79,7 @@ def rendering_page_until check_key
   end
   if check_key.instance_of? Fixnum
     until results_change==0 or results_counts>=check_key
-      element=driver.find_element(:css,"div.row div.col-md-4")
+      element=findElementOne(:css,"div.row div.col-md-4")
       element.location_once_scrolled_into_view
       sleep 2
       results_flash=waitToFindElements(:css,"h3.medium-title").size
@@ -129,15 +131,8 @@ def ensure_click_new_page element
     element.click
     windowlist=driver.window_handles
     driver.switch_to.window(windowlist.last)
-    begin
-      titleAfterClick=driver.title
-    rescue
-      titleAfterClick=""
-    #ensure
-      #puts "handles "+driver.window_handle
-    end
+    titleAfterClick=driver.title
     if (windowlist.size>1)
-      #puts "windows url: #{urlafterClick}"
       unless titleAfterClick.eql?(titleBeforeClick)
         pageChange=true
       end
