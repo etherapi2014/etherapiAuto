@@ -1,5 +1,5 @@
 #for x in {1..1}; do cucumber --tags @Header; done
-Feature: regression test
+Feature: Prod regression test
 
   @Header
   Scenario: Verify header menu fixed on top as user scrolling down
@@ -90,7 +90,7 @@ Feature: regression test
     |health2.0         |eTherapi – Launch!                     |
     |treatment-magazine|Virtual Behavioral Healthcare Platforms|
     |business-times    |Dignity pulls back curtain on new deals|
-    |psychology-today  |Is It Therapy or Is It a Video Game?   |
+    #|psychology-today  |Is It Therapy or Is It a Video Game?   |
   @Body
   Scenario Outline: Verify BODY up carousel elements TC10-TC17
    Then Verify the <text> on up carousel by clicking the arrow
@@ -161,4 +161,5 @@ Feature: regression test
     Then Verify the request is pending at 02/28/2015, 8:00 PM
   Examples:
   |account                 |verifyMsg |nameForSearch|nameForVerify             |
-  |p.etherapi00+16@gmail.com|Test ZeroSixteen|Edoardo|Edoardo Croce|
+  #|p.etherapi00+16@gmail.com|Test ZeroSixteen|Edoardo|Edoardo Croce| this will annoy Edo
+  #|p.etherapi00+16@gmail.com|Test ZeroSixteen|eTherapi|Edoardo Croce|

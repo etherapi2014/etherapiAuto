@@ -1,12 +1,12 @@
 
 driver=$driverfx
 When /^verify header is shown$/ do
-  element=myfindElement(:id,"main-homepage")
+  element=waitToFindElement(:id,"main-homepage")
   assert(element.displayed?,"header is not shown")
 end
 
 Then /^scrolling down to (.*)$/ do |location|
-  element=myfindElement(:id,"#{location}")
+  element=waitToFindElement(:id,"#{location}")
   element.location_once_scrolled_into_view
 end
 Given /^Click logo to the homepage$/ do
@@ -21,11 +21,11 @@ Given /^Click logo to the homepage$/ do
   elsif element3.size>0
     element3[0].click
   end
-  element=myfindElement(:xpath,"//div[@class='col-sm-10 col-sm-offset-1']/h1[contains(text(),'Need to talk?')]")
+  element=waitToFindElement(:xpath,"//div[@class='col-sm-10 col-sm-offset-1']/h1[contains(text(),'Need to talk?')]")
   assert(element.displayed?,'Homepage is not loaded')
 end
 Then /^Verify clicking (.*) on header menu will load to (.*)$/ do|ele,verifyMsg|
-  waitUntilEleStable
+  waitUntilEleStable 10
   clickMyElement(:xpath,"//ul[@class='nav navbar-nav']//a[contains(text(),'#{ele}')]")
   assert(verifyMsgInPage(verifyMsg) ,"#{verifyMsg} is not shown")
 

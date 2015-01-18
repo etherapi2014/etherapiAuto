@@ -1,7 +1,7 @@
 driver=$driverfx
 
 Given /^Click on the Find a Therapist button on homepage$/ do
-  element=myfindElement(:id,"goto-search-btn")
+  element=waitToFindElement(:id,"goto-search-btn")
   ensure_click(element)
 end
 Then /^check search results more then (\d+) names$/ do |expect_result_number|
@@ -10,21 +10,21 @@ Then /^check search results more then (\d+) names$/ do |expect_result_number|
 end
 
 Given /^Click on the (.*) drop list, select the item with text of (.*)$/ do |key_droplist,key_select|
-  combo_element=myfindElement(:xpath,"//a[@class='chosen-single chosen-default']/span[contains(text(),'#{key_droplist}')]")
+  combo_element=waitToFindElement(:xpath,"//a[@class='chosen-single chosen-default']/span[contains(text(),'#{key_droplist}')]")
   combo_element.click
-  drop_element=myfindElement(:xpath,"//div[@class='chosen-drop']//li[contains(text(),'#{key_select}')]")
+  drop_element=waitToFindElement(:xpath,"//div[@class='chosen-drop']//li[contains(text(),'#{key_select}')]")
   drop_element.click
 end
 Then /^Check (.*) is in the combo-search-box$/ do|key_select|
-  combo_element=myfindElement(:xpath,"//a[@class='chosen-single']/span[contains(text(),'#{key_select}')]")
+  combo_element=waitToFindElement(:xpath,"//a[@class='chosen-single']/span[contains(text(),'#{key_select}')]")
   assert(combo_element.displayed?,"#{key_select} not selected")
 end
 
 Given /^Click on the (.*) filter$/ do |action|
   if action.to_s.eql?("More")
-    element=myfindElement(:css,"a.btn.expand")
+    element=waitToFindElement(:css,"a.btn.expand")
   elsif action.to_s.eql?("Less")
-    element=myfindElement(:css,"a.btn.expand.active")
+    element=waitToFindElement(:css,"a.btn.expand.active")
   end
   element.click
   sleep 2
@@ -38,7 +38,7 @@ Then /^Verify that (.*) is (.*)$/ do |key_droplist,visibility|
   end
 end
 Then /^Verify the Magic-search field is (.*)$/ do |visibility|
-  magic_element=myfindElements(:id,"magic_search-txt")
+  magic_element=waitToFindElements(:id,"magic_search-txt")
   if visibility.eql?("shown")
     assert(magic_element[0].displayed?,"Magic-search is not shown")
   elsif visibility.eql?("invisible")
@@ -47,7 +47,7 @@ Then /^Verify the Magic-search field is (.*)$/ do |visibility|
 end
 
 Then /^Enter (.*) in the Magic-search field$/ do |keyword|
-  magic_element=myfindElement(:id,"magic_search-txt")
+  magic_element=waitToFindElement(:id,"magic_search-txt")
   magic_element.send_keys keyword.to_s
 end
 Then /^verify that (.*) is in the searching results$/ do |verify_text|

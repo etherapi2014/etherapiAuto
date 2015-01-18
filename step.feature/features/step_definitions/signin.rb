@@ -1,22 +1,22 @@
 password="12345678"
 Given /^Entering (.*) can login successfully$/ do |account|
-  emailEle=myfindElement(:id,"email_login")
+  emailEle=waitToFindElement(:id,"email_login")
   emailEle.send_keys account
-  passEle=myfindElement(:id,"password_login")
+  passEle=waitToFindElement(:id,"password_login")
   passEle.send_keys password
-  signin=myfindElement(:css,"button.btn.btn-sm.btn-info.login-modal")
+  signin=waitToFindElement(:css,"button.btn.btn-sm.btn-info.login-modal")
   signin.click
 end
 
 Then /^verify (.*) can logout$/ do |user|
-  waitUntilEleStable
+  waitUntilEleStable 10
   if user.eql?("patient")
-    logout=myfindElement(:id,"logout-btn")
+    logout=waitToFindElement(:id,"logout-btn")
   elsif user.eql?("therapist")
-    logout=myfindElement(:id,"nav-logout")
+    logout=waitToFindElement(:id,"nav-logout")
   end
   logout.click
-  waitUntilEleStable
-  loginele=myfindElement(:css,"a.login-btn")
+  waitUntilEleStable 10
+  loginele=waitToFindElement(:css,"a.login-btn")
   assert(loginele.displayed?,"not logout successfully")
 end

@@ -1,5 +1,5 @@
 ﻿#for x in {1..1}; do cucumber --tags @Header; done
-Feature: regression test
+Feature: stage regression test
   @Header
   Scenario: Verify header menu fixed on top as user scrolling down
     Given verify header is shown
@@ -47,10 +47,11 @@ Feature: regression test
     Then Close new windows
     Examples:
     |link              |page_verify                            |
+    #|psychology-today  |Is It Therapy or Is It a Video Game?   |
     |forbes            |Forbes                                 |
     |health2.0         |eTherapi – Launch!                     |
     |treatment-magazine|Virtual Behavioral Healthcare Platforms|
-    |psychology-today  |Is It Therapy or Is It a Video Game?   |
+    |business-times    |Dignity pulls back curtain on new deals|
   @Body
   Scenario Outline: Verify BODY up carousel elements TC10-TC17
    Then Verify the <text> on up carousel by clicking the arrow
