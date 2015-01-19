@@ -52,7 +52,7 @@ def waitUntilEleStable maxwait=1
 end
 # keep scrolling down until check_key is found
 # check key can be number of search results, or specific string
-# welcome to modify this part
+# 
 def rendering_page_until check_key
   results_counts=0
   results_change=1
