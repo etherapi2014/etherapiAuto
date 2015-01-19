@@ -1,4 +1,12 @@
 require 'timeout'
+def getdriver
+  @driver=$driverfx
+end
+Given /^Use the url as (.*)$/ do |givenUrl|
+  driver=getdriver
+  $uRL=givenUrl
+  driver.get $uRL
+end
 ## simple assert to veriy test is successfull or not, if not, msg will print
 def assert test, msg = nil
   msg ||= "Failed assertion, no message given."
@@ -10,12 +18,12 @@ def assert test, msg = nil
 end
 ## until element is found, driver will wait max 20 secs. As soon as it's found , waiting will stop.
 def findElementArray *args
-  driver=$driverfx
+  driver=getdriver
   driver.find_elements(*args)
 end
 
 def findElementOne *args
-  driver=$driverfx
+  driver=getdriver
   driver.find_element(*args)
 end
 def waitToFindElement (*args)
@@ -122,7 +130,7 @@ def ensure_click element
 end
 # until a new page is opened to another window, the driver will keep clicking the element
 def ensure_click_new_page element
-  driver=$driverfx
+  driver=getdriver
   pageChange=false
   clickMax=5
   clicktime=0
@@ -131,7 +139,11 @@ def ensure_click_new_page element
     element.click
     windowlist=driver.window_handles
     driver.switch_to.window(windowlist.last)
-    titleAfterClick=driver.title
+    begin
+       titleAfterClick=driver.title
+    rescue
+      driver.action.send_keys(:escape).perform
+    end
     if (windowlist.size>1)
       unless titleAfterClick.eql?(titleBeforeClick)
         pageChange=true

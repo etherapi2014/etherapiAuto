@@ -8,7 +8,7 @@ $outio = File.open("out"+time.day.to_s+".txt", "a")
 $driverfx = Selenium::WebDriver.for :firefox
 #$driverch = Selenium::WebDriver.for :chrome
 $driverfx.manage.timeouts.script_timeout = 20
-$driverfx.manage.timeouts.page_load = 20
+$driverfx.manage.timeouts.page_load = 60
 $wait5=Selenium::WebDriver::Wait.new(:timeout=>5)
 $wait7=Selenium::WebDriver::Wait.new(:timeout=>7)
 $wait10=Selenium::WebDriver::Wait.new(:timeout=>10)

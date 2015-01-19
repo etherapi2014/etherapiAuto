@@ -1,4 +1,6 @@
-Feature: regression test
+Feature: Stag regression test at Search
+  Background: Use staging URL
+    Given Use the url as http://54.68.0.140
 @Search
 Scenario: Verify Search button
 Given Click on the Find a Therapist button on homepage

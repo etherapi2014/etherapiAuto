@@ -1,6 +1,7 @@
 #for x in {1..1}; do cucumber --tags @Header; done
 Feature: Prod regression test
-
+  Background: Use product URL
+    Given Use the url as https://etherapi.com
   @Header
   Scenario: Verify header menu fixed on top as user scrolling down
     Given verify header is shown
@@ -86,7 +87,8 @@ Feature: Prod regression test
     Then Close new windows
     Examples:
     |link              |page_verify                            |
-   # |psychology-today  |Is It Therapy or Is It a Video Game?   |
+    #psychology-today failed
+    |psychology-today  |Is It Therapy or Is It a Video Game?   |
     |forbes            |Forbes                                 |
     |health2.0         |eTherapi – Launch!                     |
     |treatment-magazine|Virtual Behavioral Healthcare Platforms|

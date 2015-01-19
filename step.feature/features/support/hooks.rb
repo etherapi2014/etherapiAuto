@@ -1,8 +1,5 @@
 driver=$driverfx
-#URL="http://54.68.0.140"
-URL="https://etherapi.com"
 Before do
-  driver.get URL
   logout=driver.find_elements(:id,"logout-btn")
   if logout.size>0 and logout[0].displayed?
     logout[0].click

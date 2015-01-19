@@ -1,5 +1,7 @@
 ﻿#for x in {1..1}; do cucumber --tags @Header; done
 Feature: stage regression test
+  Background: Use staging URL
+    Given Use the url as http://54.68.0.140
   @Header
   Scenario: Verify header menu fixed on top as user scrolling down
     Given verify header is shown
@@ -25,7 +27,7 @@ Feature: stage regression test
     Then verify patient can logout
     Examples:
     |account                 |verifyMsg                           |
-    |p.etherapi00+1@gmail.com|TestRita Zeroone|
+    |p.etherapi00+1@gmail.com|Kathy Perry p.etherapi00+1@gmail.com|
     |p.etherapi00+2@gmail.com|Tim Jackson p.etherapi00+2@gmail.com|
     |p.etherapi00+3@gmail.com|Amanda Lau p.etherapi00+3@gmail.com |
   @Signin
@@ -47,7 +49,8 @@ Feature: stage regression test
     Then Close new windows
     Examples:
     |link              |page_verify                            |
-    #|psychology-today  |Is It Therapy or Is It a Video Game?   |
+    #psychology-today could fail
+    |psychology-today  |Is It Therapy or Is It a Video Game?   |
     |forbes            |Forbes                                 |
     |health2.0         |eTherapi – Launch!                     |
     |treatment-magazine|Virtual Behavioral Healthcare Platforms|
