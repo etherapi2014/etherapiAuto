@@ -1,14 +1,24 @@
-require 'timeout'
+#
+#  Those are the functions used across all the step functions.
+#  Tester can manager them here
+# #
+
 def getdriver
+  ## This function us used to specify which driver is used in following functions
   @driver=$driverfx
+  #@driver=$driverch
 end
+
 Given /^Use the url as (.*)$/ do |givenUrl|
+  ## Get the url (Stag or prod from feature file's background hook)
   driver=getdriver
   $uRL=givenUrl
   driver.get $uRL
 end
-## simple assert to veriy test is successfull or not, if not, msg will print
+
+
 def assert test, msg = nil
+  ## simple assert to veriy test is successfull or not, if not, msg will print
   msg ||= "Failed assertion, no message given."
   unless test then
     msg = msg.call if Proc === msg
@@ -16,9 +26,11 @@ def assert test, msg = nil
   end
   true
 end
-## until element is found, driver will wait max 20 secs. As soon as it's found , waiting will stop.
+
+
 def findElementArray *args
-  driver=getdriver
+  ## until element is found, driver will wait max 20 secs. As soon as it's found , waiting will stop.
+driver=getdriver
   driver.find_elements(*args)
 end
 
@@ -27,18 +39,21 @@ def findElementOne *args
   driver.find_element(*args)
 end
 def waitToFindElement (*args)
+  ## until the element is found, the driver can wait max 20 sec. But as soon as the element is found,
+  ## the process will be terminated
   $wait20.until{
     element=findElementOne(*args)
     element if element.displayed?
   }
 end
-# merge click and waitToFindElement together.
 def clickMyElement(*args)
+  # merge click and waitToFindElement together.
   element=waitToFindElement(*args)
   element.click
 end
-# keep wait 1 sec until element number in the page is not increased anymore.
 def waitUntilEleStable maxwait=1
+  # keep waiting 1 sec until element number in the page is not increased anymore. seems working for avoiding
+  # StaleElement exception from Selenium
   eleloading=1
   precount=0
   count=0
@@ -50,10 +65,13 @@ def waitUntilEleStable maxwait=1
     count=count+1
   end
 end
-# keep scrolling down until check_key is found
-# check key can be number of search results, or specific string
-# 
+
+
+
 def rendering_page_until check_key
+  # keep scrolling down until check_key is found
+  # check key can be number of search results, or specific string
+  #
   results_counts=0
   results_change=1
   results_text=nil
@@ -103,13 +121,18 @@ def rendering_page_until check_key
     end
   end
 end
-# until 20s is up, find elements
+
+
+
 def waitToFindElements *args
+  # until 20s is up, find elements
   $wait20.until{findElementArray(*args).size>0}
   findElementArray(*args)
 end
-## until the URL is changed, keep clicking the element, but not more than 5 times
+
+
 def ensure_click element
+  ## until the URL is changed, keep clicking the element, but not more than 5 times
   driver=$driverfx
   pageChange=false
   clickMax=5
@@ -128,8 +151,9 @@ def ensure_click element
     end
   end
 end
-# until a new page is opened to another window, the driver will keep clicking the element
+
 def ensure_click_new_page element
+  # until a new page is opened to another window, the driver will keep clicking the element
   driver=getdriver
   pageChange=false
   clickMax=5
@@ -139,6 +163,7 @@ def ensure_click_new_page element
     element.click
     windowlist=driver.window_handles
     driver.switch_to.window(windowlist.last)
+    ## if the new page is loading too long, use escape to deal with exception
     begin
        titleAfterClick=driver.title
     rescue
@@ -155,8 +180,11 @@ def ensure_click_new_page element
     end
   end
 end
-# see if a Msg shown in a element's attribution/text inside the page
+
+
+
 def verifyMsgInPage msgstr
+  # see if a Msg shown in a element's attribution/text inside the page
   eleToVerify=waitToFindElements(:xpath,"//*[contains(text(),\"#{msgstr}\") or contains(@*,\"#{msgstr}\")]")
   if eleToVerify.size>0
     true
@@ -164,14 +192,18 @@ def verifyMsgInPage msgstr
     false
   end
 end
-# find out if a str is in a sentence
+
+
+
 def isContainStr(str,sentence)
-  if !!(sentence =~ Regexp.new(str, true)) or str.gsub(/\s+/, "").eql?(sentence.gsub(/\s+/, ""))
+  # find out if a str is in a sentence
+if !!(sentence =~ Regexp.new(str, true)) or str.gsub(/\s+/, "").eql?(sentence.gsub(/\s+/, ""))
     true
   end
 end
-# locate the date for booking inside cal
+
 def findDayinCalendar findDay,findMonth
+  # locate the date for booking inside cal
   visibledate=waitToFindElement(:css,"span.fc-header-title h2").text
   visibleMon=visibledate[0..2]
   visibleDay=visibledate.scan /\s\d{1,2}\s/
@@ -183,8 +215,10 @@ def findDayinCalendar findDay,findMonth
     visibleMon=visibledate[0..2]
   end
 end
-# find the element for booking hours
+
+
 def findVertHour hours
+  # find the element for booking hours
   hour=hours.match(/\d{1,2}/)
   if hours.match(/\w{2}$/)[0].eql?('pm')
     hour24=hour[0].to_i+12
