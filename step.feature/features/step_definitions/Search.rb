@@ -1,4 +1,3 @@
-driver=$driverfx
 
 Given /^Click on the Find a Therapist button on homepage$/ do
   element=waitToFindElement(:id,"goto-search-btn")
@@ -30,7 +29,7 @@ Given /^Click on the (.*) filter$/ do |action|
   sleep 2
 end
 Then /^Verify that (.*) is (.*)$/ do |key_droplist,visibility|
-  combo_element=driver.find_elements(:xpath,"//a[@class='chosen-single chosen-default']/span[contains(text(),'#{key_droplist}')]")
+  combo_element=findElementArray(:xpath,"//a[@class='chosen-single chosen-default']/span[contains(text(),'#{key_droplist}')]")
   if visibility.to_s.eql?("shown")
     assert(combo_element[0].displayed?,"not found #{key_droplist}")
   elsif visibility.to_s.eql?("invisible")

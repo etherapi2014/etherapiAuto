@@ -30,7 +30,7 @@ end
 
 def findElementArray *args
   ## until element is found, driver will wait max 20 secs. As soon as it's found , waiting will stop.
-driver=getdriver
+  driver=getdriver
   driver.find_elements(*args)
 end
 

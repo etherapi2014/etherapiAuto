@@ -1,5 +1,5 @@
 
-driver=$driverfx
+driver=getdriver
 When /^verify header is shown$/ do
   element=waitToFindElement(:id,"main-homepage")
   assert(element.displayed?,"header is not shown")
@@ -10,9 +10,9 @@ Then /^scrolling down to (.*)$/ do |location|
   element.location_once_scrolled_into_view
 end
 Given /^Click logo to the homepage$/ do
-  element1=driver.find_elements(:css,"a.navbar-brand")
-  element2=driver.find_elements(:css,"a[title='Home']")
-  element3=driver.find_elements(:id,"main-logo")
+  element1=findElementArray(:css,"a.navbar-brand")
+  element2=findElementArray(:css,"a[title='Home']")
+  element3=findElementArray(:id,"main-logo")
   #wait[2].until{element.displayed?}
   if (element1.size >0)
     element1[0].click
@@ -31,6 +31,6 @@ Then /^Verify clicking (.*) on header menu will load to (.*)$/ do|ele,verifyMsg|
 
 end
 Then /^Check the modal can be removed$/ do
-  ele=driver.find_elements(:css,"body.modal-open")
+  ele=findElementArray(:css,"body.modal-open")
   driver.action.send_keys(:escape).perform if ele.size>0
 end
