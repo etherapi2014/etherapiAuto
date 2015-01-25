@@ -18,15 +18,38 @@ Feature: stage regression test
    |Contact us   |Feel free to drop us a line       |
    |For Therapist|Build your online therapy practice|
    |Sign Up      |Have an account?|
-
+  @Signup
+  Scenario Outline: User sign up as client
+    Given  Verify clicking Sign Up on header menu will load to Have an account?
+    Then click on radio button for patient
+    Then type <first name>, <last name>, and <email address> in the signup modal
+    Given type all required information, verify register mail <email address> receiving confirmation
+  Examples:
+    |first name|last name|email address|
+    |automationtest32|chung|p.etherapi00+auto32@gmail.com|
   @Signin
   Scenario Outline: Signin with valid patient account
     Given Verify clicking Login on header menu will load to Log In
     Given Entering <account> can login successfully
-    Then Verify the directed page <account> contains <verifyMsg>
+    Then Verify the user <verifyMsg> login successfully
     Then verify patient can logout
     Examples:
-    |account                 |verifyMsg                           |
+    |account                 |verifyMsg                      |
+    |p.etherapi00+auto32@gmail.com|automationtest32 chung|
+    |p.etherapi00+auto10@gmail.com|automationtest10	chung|
+    |p.etherapi00+auto11@gmail.com|automationtest11	chung|
+    |p.etherapi00+auto12@gmail.com|automationtest12	chung|
+    |p.etherapi00+auto13@gmail.com|automationtest13	chung|
+    |p.etherapi00+auto16@gmail.com|automationtest16	chung|
+    |p.etherapi00+auto17@gmail.com|automationtest17	chung|
+    |p.etherapi00+auto18@gmail.com|automationtest18	chung|
+    |p.etherapi00+auto20@gmail.com|automationtest20	chung|
+    |p.etherapi00+auto21@gmail.com|automationtest21	chung|
+    |p.etherapi00+auto22@gmail.com|automationtest22	chung|
+    |p.etherapi00+auto25@gmail.com|automationtest25	chung|
+    |p.etherapi00+auto27@gmail.com|automationtest27	chung|
+    |p.etherapi00+auto28@gmail.com|automationtest28	chung|
+    |p.etherapi00+auto29@gmail.com|automationtest29	chung|
     |p.etherapi00+1@gmail.com|Kathy Perry p.etherapi00+1@gmail.com|
     |p.etherapi00+2@gmail.com|Tim Jackson p.etherapi00+2@gmail.com|
     |p.etherapi00+3@gmail.com|Amanda Lau p.etherapi00+3@gmail.com |
@@ -102,7 +125,7 @@ Feature: stage regression test
   |Help Center       |In short, what is eTherapi?|
   |Contact Us        |Feel free to drop us a line|
   |Terms and Privacy |Terms of Use Agreement     |
-
+  @footer
   Scenario Outline: Test the Discovery link in footer is valid
   Given click the <linkname> in the footer
   Then Verify the directed page <linkname> contains <verifyMsg>
@@ -111,7 +134,7 @@ Feature: stage regression test
     |Find a therapist | Need to talk? |
     |For Therapists   |Build your online therapy practice.|
     |Sign up   |Have an account?|
-  @need_improvement
+  @booking
   Scenario Outline: client book a session
     Given Verify clicking Login on header menu will load to Log In
     Given Entering <account> can login successfully
@@ -126,5 +149,21 @@ Feature: stage regression test
     Then Verify the request is pending at 02/28/2015, 8:00 PM
   Examples:
   |account                 |verifyMsg |nameForSearch|nameForVerify                 |
-  |p.etherapi00+3@gmail.com|Amanda Lau|Terry        |Terry t.etherapi00+5@gmail.com|
+  |p.etherapi00+3@gmail.com|Amanda Lau|Terry |Terry t.etherapi00+5@gmail.com|
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

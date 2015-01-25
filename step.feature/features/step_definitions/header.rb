@@ -13,7 +13,6 @@ Given /^Click logo to the homepage$/ do
   element1=findElementArray(:css,"a.navbar-brand")
   element2=findElementArray(:css,"a[title='Home']")
   element3=findElementArray(:id,"main-logo")
-  #wait[2].until{element.displayed?}
   if (element1.size >0)
     element1[0].click
   elsif (element2.size >0)

@@ -58,7 +58,7 @@ def waitUntilEleStable maxwait=1
   precount=0
   count=0
   until eleloading==0 or count >= maxwait
-    elecount=findElementArray(:xpath,"//*").size
+    elecount=findElementArray(:xpath,"//*[@*]").size
     eleloading=elecount-precount
     precount=elecount
     sleep 1
@@ -226,10 +226,42 @@ def findVertHour hours
   hourEleLocal=hour24*4
   hourtoClick=waitToFindElement(:css,"tr[class*=fc-slot#{hourEleLocal.to_s}] td")
   hourtoClick.location_once_scrolled_into_view
-  sleep 3
+  sleep 1
   hourtoClick
 end
 
+def check_confir_mail registMail
+  # in Sing Up.
+  # check and direct to the confirmation link in mailtrap,
+  # wait max 30 sec for the mail
+  require 'net/pop'
+  require 'uri'
+  driver=getdriver
+  verifyemail=""
+  verifyURL=""
+  pop = Net::POP3.new('mailtrap.io')
+  ismailget=false
+  waitmax=30
+  waitcount=1
+  until ismailget or waitcount>waitmax
+    pop.start('2742958af43ba1a3f', 'c3cd5157b91433')
+    if pop.mails.empty?
+      puts 'No mail in Mailtrap.'
+    else
+      pop.mails[0].pop do |chunk|
+        url= URI.extract(chunk.to_s)
+        emailReg = Regexp.new(/\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}\b/)
+        verifyemail = chunk.scan(emailReg).uniq[1]
+        verifyURL=url.last
+        sleep 1
+      end
+    end
+    ismailget=true if registMail.eql?(verifyemail)
+    pop.finish
+    waitcount+=1
+  end
+  driver.get verifyURL
+end
 # ensure the modal is shown for a element(login modal, sign up modal ) not used
 #def ensureModalClick eleClick,*args
 #  driver=$driverfx

@@ -1,5 +1,6 @@
 driver=$driverfx
 Before do
+  waitUntilEleStable 5
   logout=driver.find_elements(:id,"logout-btn")
   if logout.size>0 and logout[0].displayed?
     logout[0].click
