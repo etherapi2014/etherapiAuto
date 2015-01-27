@@ -40,7 +40,7 @@ def findElementOne *args
 end
 def waitToFindElement (*args)
   ## until the element is found, the driver can wait max 20 sec. But as soon as the element is found,
-  ## the process will be terminated
+  ## the process will be finished
   $wait20.until{
     element=findElementOne(*args)
     element if element.displayed?
