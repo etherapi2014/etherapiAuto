@@ -24,7 +24,7 @@ Feature: Prod regression test
     Given Verify clicking Login on header menu will load to Log In
     Given Entering <account> can login successfully
     Then Verify the directed page <account> contains <verifyMsg>
-    Then verify patient can logout
+    Then verify user can logout
     Examples:
     |account                 |verifyMsg         |
     |p.etherapi00+1@gmail.com |Test Rita Zero One|
@@ -56,7 +56,7 @@ Feature: Prod regression test
     Given Verify clicking Login on header menu will load to Log In
     Given Entering <account> can login successfully
     Then Verify the directed page <account> contains <verifyMsg>
-    Then verify therapist can logout
+    Then verify user can logout
     Examples:
     |account                 |verifyMsg                           |
     |t.etherapi00+2@gmail.com|Dr Sharon Young TEST                |
@@ -160,7 +160,7 @@ Feature: Prod regression test
     Then Click on Request Appointment
     Then Requesting session on 28-Feb-2015, 8pm
     Then Finish the Payment request with American, Anthem Blue Cross
-    Then Verify the request is pending at 02/28/2015, 8:00 PM
+    Then Verify the request of <nameForVerify> is pending at 02/28/2015, 8:00 PM
   Examples:
   |account                 |verifyMsg |nameForSearch|nameForVerify |
   #|p.etherapi00+16@gmail.com|Test ZeroSixteen|Edoardo|Edoardo Croce| #this will annoy Edo

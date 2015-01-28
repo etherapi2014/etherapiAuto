@@ -2,8 +2,9 @@ driver=$driverfx
 Before do
   waitUntilEleStable 5
   logout=driver.find_elements(:id,"logout-btn")
-  if logout.size>0 and logout[0].displayed?
+  if logout.size>0 #and logout[0].displayed?
     logout[0].click
+    waitUntilEleStable 5
   end
 end
 After do |scenario|
@@ -17,5 +18,5 @@ After do |scenario|
 
 end
 at_exit do
-  driver.close
+  driver.quit
 end

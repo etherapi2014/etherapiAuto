@@ -256,6 +256,8 @@ def check_confir_mail registMail
         sleep 1
       end
     end
+    puts "registMail+ #{registMail}"
+    puts "verifyemail+ #{verifyemail}"
     ismailget=true if registMail.eql?(verifyemail)
     pop.finish
     waitcount+=1
