@@ -8,7 +8,7 @@ $outio = File.open("out"+time.day.to_s+".txt", "a")
 
 
 ####
-# Input capabilities for running automation on browserStack (remote browser )
+# Input capabilities for running automation on browserStack (remote browser, not free )
 caps = Selenium::WebDriver::Remote::Capabilities.new
 #caps['browser'] = 'Chrome'
 caps['browser'] = 'Firefox'
@@ -28,7 +28,7 @@ caps["name"] = "Testing Selenium 2 with Ruby on BrowserStack"
 
 
 ## running automation on local browser
-$driverfx = Selenium::WebDriver.for :firefox
+$driver = Selenium::WebDriver.for :firefox
 
 #$driverch = Selenium::WebDriver.for :chrome
 $driverfx.manage.timeouts.script_timeout = 20
