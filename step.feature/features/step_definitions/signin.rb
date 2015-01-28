@@ -1,4 +1,4 @@
-password="12345678"
+password=""
 Given /^Entering (.*) can login successfully$/ do |account|
   if account.eql?("p.etherapi00+")
     email=account+$extraluserID.to_s+"@gmail.com"
