@@ -9,7 +9,7 @@
     Given type all required information, verify register mail <email address> receiving confirmation
   Examples:
     |first name|last name|email address|
-    |auto_|chung|p.etherapi00+|
+
   @Signin @stag
   Scenario Outline: Signin with valid patient account
     Given Verify clicking Login on header menu will load to Log In
@@ -18,10 +18,6 @@
     Then verify user can logout
     Examples:
     |account                 |verifyMsg                      |
-    |p.etherapi00+|auto_ chung|
-    |p.etherapi00+1@gmail.com|Kathy Perry p.etherapi00+1@gmail.com|
-    |p.etherapi00+2@gmail.com|Tim Jackson p.etherapi00+2@gmail.com|
-    |p.etherapi00+3@gmail.com|Amanda Lau Zerothreepatient|
   @Signin @therapist @stag
   Scenario Outline: Signin with valid therapist account
     Given Verify clicking Login on header menu will load to Log In
@@ -30,10 +26,6 @@
     Then verify user can logout
     Examples:
     |account                 |verifyMsg                           |
-    |t.etherapi00+2@gmail.com|Ava Chapell t.etherapi00+2@gmail.com|
-    |t.etherapi00+10@gmail.com|t.etherapi00+10 @gmail.com|
-    |t.etherapi00+3@gmail.com|Janet Hapkin t.etherapi00+3@gmail.com|
-    |t.etherapi00+4@gmail.com|TinaFour t.etherapi00+4@gmail.com|
   @appointment @patient @stag
   Scenario Outline: patient book a session
     Given Verify clicking Login on header menu will load to Log In
@@ -50,7 +42,6 @@
     Then verify user can logout
   Examples:
     |account                 |verifyMsg |nameForSearch|nameForVerify                 |
-    |p.etherapi00+3@gmail.com|Amanda Lau|Terry |Terry ZerofiveTherpist|
 
   @appointment @therapist @stag
   Scenario Outline: Therapist confirm an appointment
