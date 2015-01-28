@@ -1,4 +1,4 @@
-pw="12345678"
+pw=""
 $extraluserID=''
 $name_newuser=''
 Then /^click on radio button for (.*)$/ do|client|
